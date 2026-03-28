@@ -40,6 +40,7 @@ end
 -- Note: Controller Support must be enabled in WoW Game Settings
 --       for C_GamePad to detect the ROG Ally's built-in gamepad.
 function HF.IsHandheld()
+    if not HandheldFriendDB then return false end
     local mode = HandheldFriendDB.mode
     if mode == "handheld" then return true end
     if mode == "pc"       then return false end
