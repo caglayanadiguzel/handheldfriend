@@ -1,7 +1,7 @@
 -- HandheldFriend
 -- Core: detection, layout switching, action bar control.
 
-HandheldFriend = {}
+HandheldFriend = HandheldFriend or {}
 local HF = HandheldFriend
 
 -- ============================================================

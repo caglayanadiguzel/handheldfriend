@@ -49,7 +49,7 @@ end
 -- Panel Frame
 -- ============================================================
 
-local panel = CreateFrame("Frame")
+local panel = CreateFrame("Frame", "HandheldFriendSettingsPanel", UIParent)
 
 -- ========== Title ==========
 local titleText = panel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
@@ -174,7 +174,7 @@ local abNote   = MakeNote(panel, abHeader, -4,
 -- ========== Apply Button ==========
 local sep5 = MakeSeparator(panel, abNote, -14)
 
-local applyBtn = CreateFrame("Button", nil, panel, "GameMenuButtonTemplate")
+local applyBtn = CreateFrame("Button", "HandheldFriendApplyButton", panel, "GameMenuButtonTemplate")
 applyBtn:SetPoint("TOPLEFT", sep5, "BOTTOMLEFT", 0, -14)
 applyBtn:SetSize(140, 30)
 applyBtn:SetText("Apply Now")
