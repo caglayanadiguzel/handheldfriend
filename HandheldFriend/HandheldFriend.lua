@@ -115,7 +115,7 @@ end
 -- Events
 -- ============================================================
 
-local eventFrame = CreateFrame("Frame")
+local eventFrame = CreateFrame("Frame", "HandheldFriendEventFrame", UIParent)
 eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -125,6 +125,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
         local addonName = ...
         if addonName == "HandheldFriend" then
             InitDB()
+            print("|cff00ff00HandheldFriend|r v1.0.0 loaded. Type |cffffd700/handheld|r for commands.")
         end
 
     elseif event == "PLAYER_ENTERING_WORLD" then

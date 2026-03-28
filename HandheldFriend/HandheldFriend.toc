@@ -3,7 +3,10 @@
 ## Notes: Automatically adjusts Edit Mode layout and action bars for handheld or PC.
 ## Author: Caglayan Adiguzel
 ## Version: 1.0.0
+## RequiredDeps:
+## X-Curse-Project-ID: 999999
 ## SavedVariables: HandheldFriendDB
+## SavedVariablesPerCharacter:
 
 ## IMPORTANT: If this addon shows as "out of date", update the Interface number above.
 ## To find your current interface number, run in-game: /run print(select(4, GetBuildInfo()))
