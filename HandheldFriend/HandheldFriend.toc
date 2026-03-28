@@ -1,7 +1,7 @@
 ## Interface: 110105
 ## Title: HandheldFriend
 ## Notes: Automatically adjusts Edit Mode layout and action bars for handheld or PC.
-## Author:
+## Author: Caglayan Adiguzel
 ## Version: 1.0.0
 ## SavedVariables: HandheldFriendDB
 
