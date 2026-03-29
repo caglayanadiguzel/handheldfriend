@@ -172,11 +172,56 @@ SlashCmdList["HANDHELDFRIEND"] = function(msg)
     elseif msg == "apply" then
         HF.Apply()
 
+    elseif msg == "debug" then
+        print("|cff00ff00HandheldFriend|r — Debug Info:")
+
+        -- DB state
+        local db = HandheldFriendDB
+        if not db then
+            print("  SavedVariables: |cffff0000NOT LOADED|r")
+            return
+        end
+        print("  Mode setting:    " .. tostring(db.mode))
+        print("  Handheld layout: " .. tostring(db.handheldLayout))
+        print("  PC layout:       " .. tostring(db.pcLayout))
+
+        -- Gamepad detection
+        local gpEnabled = C_GamePad.IsEnabled()
+        print("  Gamepad support: " .. (gpEnabled and "|cff00ff00enabled|r" or "|cffff6600disabled|r (enable in Game Settings)"))
+
+        local ok, devices = pcall(C_GamePad.GetAllDeviceIDs)
+        if ok and devices then
+            print("  Gamepad devices: " .. #devices .. " connected")
+            for i, id in ipairs(devices) do
+                local info = C_GamePad.GetDeviceRawState(id)
+                local name = (info and info.name) or tostring(id)
+                print("    [" .. i .. "] " .. name)
+            end
+        else
+            print("  Gamepad devices: |cffff0000error reading|r")
+        end
+
+        -- IsHandheld result
+        print("  IsHandheld():    " .. tostring(HF.IsHandheld()))
+
+        -- Edit Mode layouts
+        local okL, result = pcall(C_EditMode.GetLayouts)
+        if okL and result and result.layouts then
+            print("  Edit Mode layouts (" .. #result.layouts .. " total):")
+            for i, layout in ipairs(result.layouts) do
+                local active = (result.activeLayout == i) and " |cffffd700[active]|r" or ""
+                print("    [" .. i .. "] " .. layout.layoutName .. active)
+            end
+        else
+            print("  Edit Mode layouts: |cffff0000error reading|r")
+        end
+
     else
         print("|cff00ff00HandheldFriend|r — Commands:")
         print("  /handheld auto      — Auto-detect via gamepad")
         print("  /handheld handheld  — Force handheld mode")
         print("  /handheld pc        — Force PC mode")
         print("  /handheld apply     — Re-apply settings now")
+        print("  /handheld debug     — Show debug info")
     end
 end

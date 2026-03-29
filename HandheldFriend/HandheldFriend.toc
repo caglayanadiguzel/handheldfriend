@@ -1,4 +1,4 @@
-## Interface: 110105
+## Interface: 120001
 ## Title: HandheldFriend
 ## Notes: Automatically adjusts Edit Mode layout and action bars for handheld or PC.
 ## Author: Caglayan Adiguzel
