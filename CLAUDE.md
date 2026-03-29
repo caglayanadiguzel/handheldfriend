@@ -61,7 +61,7 @@ configurable from the in-game panel — do not hardcode them in logic.
 ### Detection (hybrid)
 - **Auto mode:** `C_GamePad.GetAllDeviceIDs()` — connected gamepad = handheld.
 - **Manual override:** `HandheldFriendDB.mode` = `"auto"` | `"handheld"` | `"pc"`.
-- Requirement: Controller Support must be ON in WoW Game Settings on the ROG Ally.
+- Controller Support is auto-enabled by the addon on login/reload via `SetCVar("GamePadEnable", "1")` — user does not need to enable it manually.
 
 ### Layout Switching
 - API: `C_EditMode.SetActiveLayout(index)` — confirmed NOT a protected function.
@@ -105,6 +105,7 @@ configurable from the in-game panel — do not hardcode them in logic.
 | `/handheld handheld` | Force handheld mode                 |
 | `/handheld pc`       | Force PC mode                       |
 | `/handheld apply`    | Re-apply settings immediately       |
+| `/handheld debug`    | Print debug info                    |
 | `/handheld`          | Print help                          |
 
 ---
@@ -116,14 +117,17 @@ configurable from the in-game panel — do not hardcode them in logic.
 - `Settings.SetValue("PROXY_SHOW_ACTIONBAR_N", bool)` — the only working method for
   action bar toggling in Dragonflight / TWW. CVars were removed.
 - `C_GamePad.GetAllDeviceIDs()` — returns table of connected device IDs. Empty = no gamepad.
+- `C_GamePad.IsEnabled()` + `SetCVar("GamePadEnable", "1")` — used to auto-enable controller support; SetCVar still works for this CVar in TWW (unlike action bars which use Settings.SetValue).
+- **SetActiveLayout index = ipairs_position + 2** — Modern(1) and Classic(2) built-in presets occupy slots 1–2; user layouts from GetLayouts() start at ipairs 1, so add 2.
+- ElvUI restores its own layout on login — use `C_Timer.After(2, ...)` to apply after it.
+- TOC interface number: `120001` (patch 11.0.7 TWW, verified 2026-03-29).
 - Existing addons doing similar layout switching: Auto Layout Switcher, LayoutSwitcher.
 
 ---
 
 ## What Is NOT Done Yet (future steps)
 
-- Testing in-game (user needs to install and verify).
-- Verifying correct TOC interface number.
+- Testing on ROG Ally (handheld detection + layout switch + action bars 2–8).
 - Confirming `Settings.SetValue` timing — if action bars don't apply on first login,
   may need to defer or hook a later event.
 - Any additional features the user requests after testing.
