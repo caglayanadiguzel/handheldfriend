@@ -1,4 +1,4 @@
-# HandheldFriend
+# Handheld Friend
 
 A World of Warcraft retail addon that automatically switches your Edit Mode UI layout and toggles Action Bars when you move between a handheld device (ROG Ally) and a desktop PC.
 
@@ -13,12 +13,17 @@ A World of Warcraft retail addon that automatically switches your Edit Mode UI l
 
 ## Installation
 
-1. Copy or symlink the `HandheldFriend/` folder to:
-   ```
-   <WoW Install>\_retail_\Interface\AddOns\HandheldFriend\
-   ```
-2. Log in to WoW. The addon loads automatically.
-3. Open **Options → AddOns → HandheldFriend** and assign your Edit Mode layouts for each mode.
+**Recommended (developers):** Run the included link script to create a junction/symlink from your WoW AddOns folder directly to this repo. Edits are then live in WoW instantly without copying files.
+
+- **Windows:** Run `Link HandheldFriend to WoW.bat` — auto-detects your WoW install and creates a junction in `_retail_\Interface\AddOns\`.
+- **macOS:** Run `Link HandheldFriend to WoW.sh` — copies the addon into `_retail_/Interface/AddOns/` using hard links.
+
+**Manual install:** Copy the repo folder into:
+```
+<WoW Install>\_retail_\Interface\AddOns\HandheldFriend\
+```
+
+Then log in to WoW and open **Options → AddOns → HandheldFriend** to assign your Edit Mode layouts.
 
 ## Configuration
 
