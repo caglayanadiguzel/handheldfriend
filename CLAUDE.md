@@ -32,15 +32,28 @@ ROG Ally handheld and a desktop PC.
 
 ## Addon File Structure
 
+The repo root IS the addon folder — files sit at the top level:
+
 ```
-HandheldFriend/
-├── HandheldFriend.toc         ← Metadata, load order, SavedVariables declaration
-├── HandheldFriend.lua         ← Core logic (detection, layout, action bars, events)
-└── HandheldFriend_UI.lua      ← In-game settings panel (Options → AddOns)
+handheldfriend/                          ← repo root = addon folder
+├── HandheldFriend.toc                   ← Metadata, load order, SavedVariables declaration
+├── HandheldFriend.lua                   ← Core logic (detection, layout, action bars, events)
+├── HandheldFriend_UI.lua                ← In-game settings panel (Options → AddOns)
+├── icon.tga                             ← Addon icon (displayed in WoW addon list)
+├── icon.png                             ← Source icon (not loaded by WoW)
+├── Link HandheldFriend to WoW.bat       ← Windows: creates a junction into WoW AddOns
+├── Link HandheldFriend to WoW.sh        ← macOS: rsync hard-links into WoW AddOns
+├── .gitignore                           ← Excludes .vscode/ and .claude/
+├── README.md
+└── CLAUDE.md
 ```
 
-The addon folder lives at the repo root. The user copies or symlinks it to:
-`<WoW Install>\_retail_\Interface\AddOns\HandheldFriend\`
+**Dev workflow:** Run `Link HandheldFriend to WoW.bat` once — it creates a Windows junction
+from `<WoW>\_retail_\Interface\AddOns\HandheldFriend\` pointing to the repo root.
+Edits are live in WoW instantly; `/reload` to apply. No file copying needed.
+
+**TOC display name:** `## Title: Handheld Friend` (cosmetic only — folder name, TOC filename,
+and internal addon name all remain `HandheldFriend` with no space).
 
 ---
 
