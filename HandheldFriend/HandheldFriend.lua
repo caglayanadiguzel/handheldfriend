@@ -57,11 +57,19 @@ end
 -- Edit Mode Layout
 -- ============================================================
 
+-- C_EditMode.SetActiveLayout uses a 1-based index that includes Blizzard's
+-- built-in presets (Modern=1, Classic=2) before user-created layouts.
+-- C_EditMode.GetLayouts() returns only user-created layouts (ipairs 1..N).
+-- So user layout at ipairs position i → SetActiveLayout index (i + 2).
+local EDITMODE_PRESET_COUNT = 2
+
 local function GetLayoutIndex(name)
     local ok, result = pcall(C_EditMode.GetLayouts)
     if not ok or not result or not result.layouts then return nil end
     for i, layout in ipairs(result.layouts) do
-        if layout.layoutName == name then return i end
+        if layout.layoutName == name then
+            return i + EDITMODE_PRESET_COUNT
+        end
     end
     return nil
 end
@@ -210,7 +218,7 @@ SlashCmdList["HANDHELDFRIEND"] = function(msg)
         if okL and result and result.layouts then
             print("  Edit Mode layouts (" .. #result.layouts .. " total):")
             for i, layout in ipairs(result.layouts) do
-                local active = (result.activeLayout == i) and " |cffffd700[active]|r" or ""
+                local active = (result.activeLayout == (i + EDITMODE_PRESET_COUNT)) and " |cffffd700[active]|r" or ""
                 print("    [" .. i .. "] " .. layout.layoutName .. active)
             end
         else
