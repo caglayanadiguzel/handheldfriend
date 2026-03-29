@@ -85,6 +85,21 @@ local function ApplyLayout(name)
 end
 
 -- ============================================================
+-- Gamepad Support
+-- ============================================================
+
+-- Ensures WoW's built-in gamepad support is active.
+-- Without this, C_GamePad.GetAllDeviceIDs() always returns an empty table
+-- and auto-detection never fires on the ROG Ally.
+-- Safe to call on PC too — it's a no-op when already enabled.
+local function EnsureGamepadEnabled()
+    if not C_GamePad.IsEnabled() then
+        SetCVar("GamePadEnable", "1")
+        print("|cff00ff00HandheldFriend:|r Controller support enabled automatically.")
+    end
+end
+
+-- ============================================================
 -- Action Bars (2-8)
 -- ============================================================
 
@@ -141,6 +156,8 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
         -- Only apply on fresh login or UI reload, not every zone change.
         local isInitialLogin, isReloadingUi = ...
         if isInitialLogin or isReloadingUi then
+            -- Make sure gamepad support is on so auto-detection works on the ROG Ally.
+            EnsureGamepadEnabled()
             -- Delay so we run after other addons (e.g. ElvUI) finish restoring their layout.
             C_Timer.After(2, function() HF.Apply() end)
         end
@@ -196,7 +213,7 @@ SlashCmdList["HANDHELDFRIEND"] = function(msg)
 
         -- Gamepad detection
         local gpEnabled = C_GamePad.IsEnabled()
-        print("  Gamepad support: " .. (gpEnabled and "|cff00ff00enabled|r" or "|cffff6600disabled|r (enable in Game Settings)"))
+        print("  Gamepad support: " .. (gpEnabled and "|cff00ff00enabled|r" or "|cffff6600disabled|r"))
 
         local ok, devices = pcall(C_GamePad.GetAllDeviceIDs)
         if ok and devices then
