@@ -1,5 +1,6 @@
 ## Interface: 120001
-## Title: HandheldFriend
+## Title: Handheld Friend
+## IconTexture: Interface\AddOns\HandheldFriend\icon
 ## Notes: Automatically adjusts Edit Mode layout and action bars for handheld or PC.
 ## Author: Caglayan Adiguzel
 ## Version: 1.0.0
