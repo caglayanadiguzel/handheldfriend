@@ -10,8 +10,8 @@ local HF = HandheldFriend
 
 local DEFAULTS = {
     mode           = "auto",          -- "auto" | "handheld" | "pc"
-    handheldLayout = "Rog Ally",
-    pcLayout       = "ASUS Mobil Ekran",
+    handheldLayout = "",              -- set via Options → AddOns → HandheldFriend
+    pcLayout       = "",              -- set via Options → AddOns → HandheldFriend
 }
 
 local pendingApply = false
