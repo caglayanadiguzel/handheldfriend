@@ -133,7 +133,8 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
         -- Only apply on fresh login or UI reload, not every zone change.
         local isInitialLogin, isReloadingUi = ...
         if isInitialLogin or isReloadingUi then
-            HF.Apply()
+            -- Delay so we run after other addons (e.g. ElvUI) finish restoring their layout.
+            C_Timer.After(2, function() HF.Apply() end)
         end
 
     elseif event == "PLAYER_REGEN_ENABLED" then
