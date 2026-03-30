@@ -138,6 +138,37 @@ configurable from the in-game panel — do not hardcode them in logic.
 
 ---
 
+## Release Workflow
+
+Releases are automated via **BigWigs Packager** (`.github/workflows/release.yml`).
+The packager builds `HandheldFriend-vX.X.X.zip` and attaches it to the GitHub release automatically.
+
+### How to cut a release
+1. **Agree on release notes** with the user before touching any files.
+2. **Update `CHANGELOG.md`** — replace the previous entry with the new one. Only the current version's notes should be in the file (packager dumps the whole file as the release body).
+3. **Commit & push** to main.
+4. **Tag & push:** `git tag vX.X.X && git push --tags` — this triggers the workflow.
+
+### CHANGELOG.md format (must follow exactly)
+```markdown
+# Handheld Friend
+
+## [X.X.X](https://github.com/caglayanadiguzel/handheldfriend/releases/tag/vX.X.X) - YYYY-MM-DD
+
+- Change one
+- Change two
+```
+
+- The `# Handheld Friend` title renders as the addon name above the release notes.
+- The version heading **must** include the hyperlink to the release tag — add it manually.
+- Only keep the **current** release entry. Previous entries are visible in git history.
+
+### Files excluded from the packaged zip (see `.pkgmeta`)
+`CLAUDE.md`, `CHANGELOG.md`, `icon.png`, `Link HandheldFriend to WoW.bat`,
+`Link HandheldFriend to WoW.sh`, `.claude`, `.vscode`, `.gitignore`, `.github`
+
+---
+
 ## What Is NOT Done Yet (future steps)
 
 - Testing on ROG Ally (handheld detection + layout switch + action bars 2–8).
