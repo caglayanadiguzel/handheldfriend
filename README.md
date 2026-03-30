@@ -76,6 +76,10 @@ In **auto** mode the addon calls `C_GamePad.GetAllDeviceIDs()` on login. If any 
 
 You can override detection at any time with `/handheld handheld` or `/handheld pc`, and return to auto with `/handheld auto`.
 
+## Other Recommended Addons
+
+- [ConsolePort](https://github.com/seblindfors/ConsolePort) — Full controller UI for WoW. Redesigns the entire interface for gamepad play — pairs perfectly with Handheld Friend for a complete handheld experience.
+
 ## Problem? Suggestion?
 
 - [Open an Issue](https://github.com/caglayanadiguzel/handheldfriend/issues)
