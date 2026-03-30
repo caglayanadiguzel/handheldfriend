@@ -8,6 +8,7 @@
 [![Lua](https://img.shields.io/badge/Lua-%232C2D72.svg?&logo=lua&logoColor=white)](https://lua.org)
 [![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?&logo=visual-studio-code&logoColor=white)](https://code.visualstudio.com)
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?&logo=github&logoColor=white)](https://github.com/caglayanadiguzel/handheldfriend)
+[![CurseForge](https://img.shields.io/curseforge/dt/1499810?logo=curseforge&label=CurseForge&color=F16436)](https://www.curseforge.com/wow/addons/handheld-friend)
 
 <br>
 
