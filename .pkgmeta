@@ -1,0 +1,15 @@
+package-as: HandheldFriend
+enable-nolib-creation: no
+
+license-output: LICENSE
+
+ignore:
+  - CLAUDE.md
+  - CHANGELOG.md
+  - icon.png
+  - Link HandheldFriend to WoW.bat
+  - Link HandheldFriend to WoW.sh
+  - .claude
+  - .vscode
+  - .gitignore
+  - .github
